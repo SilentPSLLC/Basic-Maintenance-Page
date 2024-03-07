@@ -49,6 +49,7 @@
             document.querySelector(".minute").innerText = textMinute + ' Minutes';
             document.querySelector(".second").innerText = textSecond + ' Seconds';
         }
+        countDown();
         setInterval(countDown, 1000);
     </script>
   </body>
