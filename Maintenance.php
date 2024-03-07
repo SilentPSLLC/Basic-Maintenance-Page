@@ -145,7 +145,7 @@ header( 'Retry-After: 30' );
     </article>
     <script>
         const countDown = () => {
-            const countDay = new Date("01/12/2023");
+            const countDay = new Date("09/21/2023 09:21:00"); //format: MM/DD/YYYY HH:MM:SS
             const now = new Date();
             const counter = countDay - now;
             const second = 1000;
@@ -155,7 +155,18 @@ header( 'Retry-After: 30' );
             const textDay = Math.floor(counter / day);
             const textHour = Math.floor((counter % day) / hour);
             const textMinute = Math.floor((counter % hour) / minute);
-            const textSecond = Math.floor((counter % minute) / second)
+            const textSecond = Math.floor((counter % minute) / second);
+             if (textSecond < 0) {
+              theDay = 0;
+              theHour = 0;
+              theMinute = 0;
+              theSecond = 0;
+            } else {
+              theDay = textDay;
+              theHour = textHour;
+              theMinute = textMinute;
+              theSecond = textSecond;
+            }
             document.querySelector(".day").innerText = textDay + ' <?php echo $translations[$lang]['day']; ?>';
             document.querySelector(".hour").innerText = textHour + ' <?php echo $translations[$lang]['hour']; ?>';
             document.querySelector(".minute").innerText = textMinute + ' <?php echo $translations[$lang]['minute']; ?>';
