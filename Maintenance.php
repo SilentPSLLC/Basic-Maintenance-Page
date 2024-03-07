@@ -1,4 +1,8 @@
 <?php
+$time_to_wait = 60; // in seconds
+$site_title = 'My Site';
+$contact_link = '#';
+
 // Get the user's preferred languages from the Accept-Language header
 $languages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
 
@@ -49,6 +53,16 @@ $translations = array(
         'minute' => 'Minutes',
         'second' => 'Secondes',
     ),
+    'de' => array(
+        'title' => 'Wartung der Website',
+        'heading' => 'Wir sind bald zurück!',
+        'text' => 'Wir verbessern gerade ein paar Dinge für dich! In der Zwischenzeit kannst du dich gerne <a href="' . $contact_link . '">uns auf Discord anschließen</a>, um zu chatten oder um die Hilfe zu erhalten, die du benötigst. Wir sind in Kürze wieder da, und die Seite wird am Ende des Countdowns unten automatisch aktualisiert.',
+        'team' => '&mdash; Das Team',
+        'day' => 'Tage',
+        'hour' => 'Stunden',
+        'minute' => 'Minuten',
+        'second' => 'Sekunden',
+    ),
     'es' => array(
         'title' => 'Mantenimiento del sitio',
         'heading' => '¡Volveremos pronto!',
@@ -87,12 +101,12 @@ if ( ! in_array( $protocol, array( 'HTTP/1.1', 'HTTP/2', 'HTTP/2.0' ), true ) ) 
 }
 header( "$protocol 503 Service Unavailable", true, 503 );
 header( 'Content-Type: text/html; charset=utf-8' );
-header( 'Retry-After: 30' );
+header( 'Retry-After:' . $time_to_wait );
 ?>
 <!doctype html>
 <html>
   <head>
-    <title><?php echo $translations[$lang]['title']; ?></title>
+    <title><?php echo $site_title . ' - ' . $translations[$lang]['title']; ?></title>
     <meta charset="utf-8"/>
     <meta name="robots" content="noindex"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -156,8 +170,9 @@ header( 'Retry-After: 30' );
         </div>
     </article>
     <script>
+        const stringDate = new Date(Date.now() + <?php echo $time_to_wait ?> * 1000).toLocaleString();
+        const countDay = new Date(stringDate); //format: MM/DD/YYYY HH:MM:SS
         const countDown = () => {
-            const countDay = new Date("09/21/2023 09:21:00"); //format: MM/DD/YYYY HH:MM:SS
             const now = new Date();
             const counter = countDay - now;
             const second = 1000;
@@ -168,11 +183,14 @@ header( 'Retry-After: 30' );
             const textHour = Math.floor((counter % day) / hour);
             const textMinute = Math.floor((counter % hour) / minute);
             const textSecond = Math.floor((counter % minute) / second);
+            
              if (textSecond < 0) {
               theDay = 0;
               theHour = 0;
               theMinute = 0;
               theSecond = 0;
+
+              window.location.reload();
             } else {
               theDay = textDay;
               theHour = textHour;
