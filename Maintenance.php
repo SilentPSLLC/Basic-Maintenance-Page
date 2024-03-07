@@ -12,7 +12,7 @@ $lang = 'en';
 // Loop through the user's preferred languages and check if we have a translation available
 foreach ($languages as $language) {
     $language = strtolower(substr($language, 0, 2));
-    if (in_array($language, array('en', 'ar', 'fr', 'es', 'zh', 'pt'))) {
+    if (in_array($language, array('en', 'ar', 'fr', 'de', 'es', 'zh', 'pt'))) {
         $lang = $language;
         break;
     }
