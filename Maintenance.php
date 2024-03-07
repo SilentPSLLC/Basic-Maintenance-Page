@@ -15,7 +15,8 @@ header( 'Retry-After: 30' );
     <meta name="robots" content="noindex"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-      body { text-align: center; padding: 20px; font: 20px Helvetica, sans-serif; color: #efe8e8; }
+       /* */
+      body { text-align: center; padding: 20px; font: 20px Helvetica, sans-serif; color: #efe8e8; background-color:2e2929 /* Use color: #333; background-color:#FFFFFF for Light Mode */}
       @media (min-width: 768px){
         body{ padding-top: 150px; }
       }
