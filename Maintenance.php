@@ -1,6 +1,6 @@
 <?php
 $time_to_wait = 60; // in seconds
-$site_title = 'My Site';
+$site_title = 'My_Site';
 $contact_link = '#';
 
 // Get the user's preferred languages from the Accept-Language header
@@ -118,6 +118,7 @@ header( 'Retry-After:' . $time_to_wait );
             font: 20px Helvetica, sans-serif; 
             color: #333;
            background-color: #ffffff
+      }
       @media (min-width: 768px){
         body{ 
            padding-top: 150px; 
