@@ -102,8 +102,8 @@ header( 'Retry-After: 30' );
             text-align: center; 
             padding: 20px; 
             font: 20px Helvetica, sans-serif; 
-            color: #efe8e8; 
-            background-color:2e2929 /* Use color: #333; background-color:#FFFFFF for Light Mode */}
+            color: #333;
+           background-color: #ffffff
       @media (min-width: 768px){
         body{ 
            padding-top: 150px; 
@@ -125,6 +125,18 @@ header( 'Retry-After: 30' );
       a:hover { 
          color: #efe8e8; 
          text-decoration: none; 
+      }
+      @media (prefers-color-scheme: dark) {
+           body {
+                   color: #efe8e8;
+                   background-color: #2e2929
+            }
+            a {
+                    color: #dc8100;
+            }
+            a:hover {
+                    color: #efe8e8;
+            }
       }
     </style>
   </head>
